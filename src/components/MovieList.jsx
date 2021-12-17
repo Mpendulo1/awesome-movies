@@ -30,7 +30,7 @@ function MovieList() {
         {
             movies.map( movie => (
                 <li key={movie.id}>
-                    <Link to={`/movies/:${movie.id}`}>
+                    <Link to={`/movies/${movie.id}`}>
                     <MovieCard 
                         score={10*movie.vote_average} 
                         img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
