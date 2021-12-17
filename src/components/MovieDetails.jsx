@@ -5,7 +5,7 @@ import axios from "axios";
 
 function MovieDetails({img}) {
 
-    const [movie, setMovie] = useState({ genres:[]});
+    const [movie, setMovie] = useState({ release_date: "", genres:[]});
     const [fields, setFields] = useState({
         name:"",
         surname:"",
@@ -13,10 +13,15 @@ function MovieDetails({img}) {
         phonenumber:""
     });
     let {id} = useParams();
-    id = id.split(':')[1];
+
+    let rating = 
+        10*movie.vote_average >= 70 ? "green" :
+        10*movie.vote_average >= 50 ? "yellow" :
+        10*movie.vote_average > 0 ? "red" : "grey";
+    let len = movie.genres.length;
     
-    let trelloAPIkey = "46d10c03f5670992ba29317d90b08afb";
-    let trelloAPItoken = "9ad726f1a745713871cc0ebbf67925536255e95e1721238994dc1f64731c3237";
+    // let trelloAPIkey = "46d10c03f5670992ba29317d90b08afb";
+    // let trelloAPItoken = "9ad726f1a745713871cc0ebbf67925536255e95e1721238994dc1f64731c3237";
     let trelloBoardID = "61bbbb0ceb02508d900abd6a";
     let trelloCardID = "5ffc20b406528c399a348b65";
 
@@ -29,7 +34,8 @@ function MovieDetails({img}) {
             });
             
             const data = await response.data;
-            setMovie( prevState => data );
+            setMovie( data ); 
+            console.log(movie);
         } catch (error) {
             console.log(error);
         
@@ -57,14 +63,25 @@ function MovieDetails({img}) {
     return(
         <div className="movie-details">
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="poster" />
+            <div className="info-section">
             <div className="info">
-                <h1>{movie.title}({movie.release_date})</h1>
+                <h1>{movie.title}({movie.release_date.split("-")[0]})</h1>
                 <p>{movie.tagline}</p>
-                <span>Rating: {10 * movie.vote_average}</span>
+                <span className={`${rating}-rating rating`}>Rating: {10 * movie.vote_average}</span>
                 <h1>Overview</h1>
                 <p>{movie.overview}</p>
                 <h1>Genres</h1>
-                <p>{movie.genres.map( (genre, index) => `${genre.name}, ` )}</p>
+                <p>
+                {
+                    movie.genres.map( (genre, index) => {
+                        if (index !== len - 1) { 
+                            return `${genre.name}, `
+                        } else {
+                            return `${genre.name}`
+                        }
+                    })
+                }
+                </p>
             </div>
             <form>
                 <input 
@@ -95,8 +112,9 @@ function MovieDetails({img}) {
                     placeholder="Phone Number*" 
                     onChange={ (e) => handleChange(e)}
                 />
+                <button type="submit" onSubmit={handleSubmit}>Get movie</button>
             </form>
-            <button type="submit" onSubmit={handleSubmit}>Get movie</button>
+            </div>
         </div>
     );
 }

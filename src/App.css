@@ -176,8 +176,13 @@ li {
 
 
 @media(max-width:991px){
-.header__middle__logo {width: 77%;}
-.header__middle__menus {width: 20%;}
+.header__middle__logo {width: fit-content;}
+.header__middle__menus {
+  width: fit-content;
+  left: 0;
+  float: right;
+  padding-top: 15px;
+}
 .header__middle__logo img {max-width: 197px;margin: 27px 0 0 0;}
 .main-nav .menubar__button:hover {background-color: #f44336;}
 .main-nav .menu-item:hover > a {color: #07a8ff !important}
@@ -190,7 +195,6 @@ li {
   border-radius: 5px;
   margin: 2px auto 0;
   cursor: pointer;
-  position: relative;
   z-index: 10037;
   left: -35px;
 }
@@ -202,9 +206,10 @@ li {
   z-index: 10007;
   background-color: #d8f1ff;
   border-bottom: 3px solid #ff3d00;
-  right: 0;
+  right: 10px;
   padding-bottom: 17px;
   padding-top: 57px;
+  padding-right: 300px;
 }
 .main-nav .menu-item a {margin: 10px 17px;text-align: center;color: #000000;}
 .main-nav  ul.main-menu {display: none}
@@ -214,7 +219,9 @@ li {
 .menus__categorysss{display: none;}
 .menus__categorysss2{display: none;}
 .menu-item .sub__menus__full a {text-align: left;}
-
+.sec__one h1 {
+  font-size: 1.7rem;
+}
 }
 
 .movie-list {
@@ -231,4 +238,95 @@ li {
   border-radius: 3px;
   width: 200px;
   cursor: pointer;
+  /* position: absolute;  */
+  overflow: hidden;
 }           
+
+.rating-sash {
+  width: 100px;
+}
+.movie-card > span:last-child {
+  font-size: .7rem;
+  padding: 0 0.3rem;
+}
+
+.movie-details {
+  display: inline-flex;
+  padding: 10px;
+  border: 1px solid #222;
+  
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating {
+  width: fit-content;
+  font-size: 2rem;
+  font-weight: bolder;
+  padding: 0.5rem 1rem;
+  margin: .4rem 0 0;
+  border-radius: 0.4rem;
+}
+
+.green-rating {
+  background-color: green;
+}
+.yellow-rating {
+  background-color: yellow;
+}
+.red-rating {
+  background-color: red;
+}
+.grey-rating {
+  background-color: grey;
+}
+
+.info > h1 {
+  padding: 1rem 0 0.2rem;
+}
+
+.info-section > form {
+  width: clamp(200px, 40%, 800px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.info-section > form > input {
+  border: 1px solid grey;
+  padding: 0.5rem 0.3rem;
+  margin: 0.6rem 0;
+}
+.info-section > form > button {
+  cursor: pointer;
+  padding: 0.5rem 0.3rem;
+  margin: 0.2rem 0;
+  font-weight: bolder;
+  color: whitesmoke;
+  background-color: green;
+}
+
+
+div.browser-btn a {
+  color: #000000;
+  padding: 20px;
+  background-color: rgb(255, 153, 0);
+  border: 1px solid black;
+  padding: 20px;
+}
+div.browser-btn {
+  padding-top: 150px;
+display: flex;
+align-self: center;
+  width: fit-content;
+}
